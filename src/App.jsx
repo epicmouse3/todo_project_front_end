@@ -1,5 +1,5 @@
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
-import { BrowserRouter, Outlet, Route, Routes, } from 'react-router-dom'
+import { BrowserRouter, Outlet, Route, Routes, useNavigate, } from 'react-router-dom'
 import { TodoContext } from './contexts/TodoContext';
 import AddTodo from './pages/AddTodo';
 import ErrorPage from './pages/ErrorPage';
@@ -10,8 +10,17 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import { AuthContext, AuthProvider } from './components/AuthContext';
 import RequireAuth from './components/RequireAuth';
 import EditTodo from './pages/EditTodo';
+import { useContext } from 'react';
 
 function Layout() {
+
+  const logout = useContext(AuthContext).logout
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    logout()
+    navigate("/login")
+  }
 
   return (
     <>
@@ -23,7 +32,7 @@ function Layout() {
           </Nav>
           <Nav>
             <NavDropdown title="Shaun">
-              <NavDropdown.Item>Logout</NavDropdown.Item>
+              <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Container>
