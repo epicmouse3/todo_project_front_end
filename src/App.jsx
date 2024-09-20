@@ -1,5 +1,5 @@
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
-import { BrowserRouter, Outlet, Route, Routes, useNavigate, } from 'react-router-dom'
+import { BrowserRouter, Outlet, Route, Routes, useNavigate } from 'react-router-dom'
 import { TodoContext } from './contexts/TodoContext';
 import AddTodo from './pages/AddTodo';
 import ErrorPage from './pages/ErrorPage';
@@ -18,7 +18,7 @@ function Layout() {
   const navigate = useNavigate()
 
   const handleLogout = () => {
-    logout()
+    logout(null)
     navigate("/login")
   }
 
@@ -32,7 +32,7 @@ function Layout() {
           </Nav>
           <Nav>
             <NavDropdown title="Shaun">
-              <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+              <NavDropdown.Item href="/login" onClick={handleLogout}>Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Container>
