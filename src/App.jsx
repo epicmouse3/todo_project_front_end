@@ -10,15 +10,14 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import { AuthContext, AuthProvider } from './components/AuthContext';
 import RequireAuth from './components/RequireAuth';
 import EditTodo from './pages/EditTodo';
-import { useContext } from 'react';
+
 
 function Layout() {
 
-  const logout = useContext(AuthContext).logout
   const navigate = useNavigate()
 
   const handleLogout = () => {
-    logout(null)
+    localStorage.clear()
     navigate("/login")
   }
 
